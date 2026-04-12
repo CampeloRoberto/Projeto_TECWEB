@@ -216,6 +216,115 @@ footer {
 }
 
 /* ===========================
+   Filtro
+=========================== */
+#form-filtro {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#form-filtro label {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+#form-filtro select {
+  width: auto;
+}
+
+/* ===========================
+   Lista de filmes
+=========================== */
+#lista-filmes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.card-filme article {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.card-filme article header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.card-filme h3 {
+  font-size: 1rem;
+  color: var(--cor-texto);
+  flex: 1;
+}
+
+.badge-genero {
+  background-color: var(--cor-destaque);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+  white-space: nowrap;
+}
+
+.nota {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.descricao {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.card-filme article footer {
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: right;
+}
+
+.btn-remover {
+  background: none;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto-suave);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-remover:hover {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+#mensagem-vazia {
+  color: var(--cor-texto-suave);
+}
+
+#mensagem-vazia a {
+  color: var(--cor-destaque);
+}
+
+/* ===========================
    Responsividade
 =========================== */
 @media (max-width: 600px) {
