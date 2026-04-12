@@ -22,7 +22,45 @@
   <main>
     <section>
       <h2>Cadastrar Filme</h2>
-      <p>Formulário será implementado aqui.</p>
+
+      <form id="form-filme" novalidate>
+
+        <fieldset>
+          <legend>Informações do Filme</legend>
+
+          <label for="titulo">Título *</label>
+          <input type="text" id="titulo" name="titulo" placeholder="Ex: Interestelar" />
+          <span class="erro" id="erro-titulo"></span>
+
+          <label for="genero">Gênero *</label>
+          <select id="genero" name="genero">
+            <option value="">Selecione...</option>
+            <option value="Ação">Ação</option>
+            <option value="Comédia">Comédia</option>
+            <option value="Drama">Drama</option>
+            <option value="Ficção Científica">Ficção Científica</option>
+            <option value="Terror">Terror</option>
+            <option value="Animação">Animação</option>
+            <option value="Documentário">Documentário</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <span class="erro" id="erro-genero"></span>
+
+          <label for="nota">Nota (1 a 10) *</label>
+          <input type="number" id="nota" name="nota" min="1" max="10" placeholder="Ex: 8" />
+          <span class="erro" id="erro-nota"></span>
+
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" rows="4" placeholder="Conte um pouco sobre o filme..."></textarea>
+
+        </fieldset>
+
+        <button type="submit">Salvar Filme</button>
+
+      </form>
+
+      <p id="mensagem-sucesso" class="sucesso" hidden>Filme cadastrado com sucesso!</p>
+
     </section>
   </main>
 
@@ -30,5 +68,6 @@
     <p>&copy; 2025 CineList — Projeto TECWEB</p>
   </footer>
 
+  <script src="js/cadastro.js"></script>
 </body>
 </html>
