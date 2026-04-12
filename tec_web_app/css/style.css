@@ -1,0 +1,150 @@
+/* ===========================
+   Variáveis e Reset
+=========================== */
+:root {
+  --cor-fundo: #0f0f0f;
+  --cor-card: #1a1a1a;
+  --cor-borda: #2e2e2e;
+  --cor-destaque: #e50914;
+  --cor-texto: #ececec;
+  --cor-texto-suave: #999;
+  --fonte-base: 'Segoe UI', sans-serif;
+  --raio: 8px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================
+   Cabeçalho
+=========================== */
+header {
+  background-color: var(--cor-card);
+  border-bottom: 2px solid var(--cor-destaque);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  color: var(--cor-destaque);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   Navegação
+=========================== */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--cor-texto-suave);
+  padding: 0.4rem 1rem;
+  border-radius: var(--raio);
+  transition: background 0.2s, color 0.2s;
+  font-size: 0.95rem;
+}
+
+nav a:hover,
+nav a.ativo {
+  background-color: var(--cor-destaque);
+  color: #fff;
+}
+
+/* ===========================
+   Conteúdo principal
+=========================== */
+main {
+  flex: 1;
+  padding: 2.5rem 2rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===========================
+   Seção hero (Início)
+=========================== */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: var(--cor-texto-suave);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.hero a {
+  display: inline-block;
+  background-color: var(--cor-destaque);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 2rem;
+  border-radius: var(--raio);
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}
+
+.hero a:hover {
+  opacity: 0.85;
+}
+
+/* ===========================
+   Rodapé
+=========================== */
+footer {
+  background-color: var(--cor-card);
+  border-top: 1px solid var(--cor-borda);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+/* ===========================
+   Responsividade
+=========================== */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+  }
+}
