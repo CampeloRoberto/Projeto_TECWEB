@@ -86,3 +86,22 @@ form.addEventListener('submit', function (evento) {
 document.getElementById('titulo').addEventListener('input', () => mostrarErro('erro-titulo', ''));
 document.getElementById('genero').addEventListener('change', () => mostrarErro('erro-genero', ''));
 document.getElementById('nota').addEventListener('input', () => mostrarErro('erro-nota', ''));
+
+// ===========================
+//   Valida ao sair do campo (blur)
+// ===========================
+
+document.getElementById('titulo').addEventListener('blur', function () {
+  if (!this.value.trim()) mostrarErro('erro-titulo', 'O título é obrigatório.');
+});
+
+document.getElementById('genero').addEventListener('blur', function () {
+  if (!this.value) mostrarErro('erro-genero', 'Selecione um gênero.');
+});
+
+document.getElementById('nota').addEventListener('blur', function () {
+  const notaNum = Number(this.value);
+  if (!this.value || isNaN(notaNum) || notaNum < 1 || notaNum > 10) {
+    mostrarErro('erro-nota', 'Informe uma nota entre 1 e 10.');
+  }
+});
