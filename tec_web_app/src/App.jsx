@@ -1,0 +1,34 @@
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import { FilmesProvider } from './context/FilmesContext'
+import Inicio from './pages/Inicio'
+import Cadastro from './pages/Cadastro'
+import Listagem from './pages/Listagem'
+
+export default function App() {
+  return (
+    <FilmesProvider>
+      <BrowserRouter>
+        <header>
+          <h1>CineList</h1>
+          <nav>
+            <ul>
+              <li><NavLink to="/" end>Início</NavLink></li>
+              <li><NavLink to="/cadastro">Cadastro</NavLink></li>
+              <li><NavLink to="/listagem">Listagem</NavLink></li>
+            </ul>
+          </nav>
+        </header>
+
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/listagem" element={<Listagem />} />
+        </Routes>
+
+        <footer>
+          <p>&copy; 2025 CineList — Projeto TECWEB</p>
+        </footer>
+      </BrowserRouter>
+    </FilmesProvider>
+  )
+}
