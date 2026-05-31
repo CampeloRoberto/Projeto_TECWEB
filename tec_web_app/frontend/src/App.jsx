@@ -12,9 +12,9 @@ export default function App() {
           <h1>CineList</h1>
           <nav>
             <ul>
-              <li><NavLink to="/" end>Início</NavLink></li>
-              <li><NavLink to="/cadastro">Cadastro</NavLink></li>
-              <li><NavLink to="/listagem">Listagem</NavLink></li>
+              <li><NavLink to="/" end className={({ isActive }) => isActive ? 'ativo' : ''}>Início</NavLink></li>
+              <li><NavLink to="/cadastro" className={({ isActive }) => isActive ? 'ativo' : ''}>Cadastro</NavLink></li>
+              <li><NavLink to="/listagem" className={({ isActive }) => isActive ? 'ativo' : ''}>Listagem</NavLink></li>
             </ul>
           </nav>
         </header>
