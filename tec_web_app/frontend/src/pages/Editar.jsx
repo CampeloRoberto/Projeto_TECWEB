@@ -5,7 +5,7 @@ import { useFilmes } from '../context/FilmesContext'
 const GENEROS = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Animação', 'Documentário', 'Outro']
 
 const normalizar = str =>
-  str.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  str.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, '')
 const titularizar = str =>
   str.trim().split(' ')
     .filter(p => p.length > 0)
