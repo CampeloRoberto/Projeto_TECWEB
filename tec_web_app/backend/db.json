@@ -8,13 +8,6 @@
       "descricao": "Um programador descobre que a realidade é uma simulação."
     },
     {
-      "id": 2,
-      "titulo": "Pulp Fiction",
-      "genero": "Drama",
-      "nota": 10,
-      "descricao": "Histórias entrelaçadas no submundo de Los Angeles."
-    },
-    {
       "id": 3,
       "titulo": "O Poderoso Chefão",
       "genero": "Drama",
@@ -57,25 +50,11 @@
       "id": 10
     },
     {
-      "titulo": "todo mundo em pânico",
-      "genero": "Comédia",
-      "nota": 7,
-      "descricao": "",
-      "id": 11
-    },
-    {
       "titulo": "todo mundo em pânico 6",
       "genero": "Comédia",
       "nota": 6,
       "descricao": "",
       "id": 12
-    },
-    {
-      "titulo": "todo mundo em pânico 7",
-      "genero": "Ação",
-      "nota": 7,
-      "descricao": "",
-      "id": 13
     }
   ]
 }
