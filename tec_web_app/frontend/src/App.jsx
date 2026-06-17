@@ -3,6 +3,7 @@ import { FilmesProvider } from './context/FilmesContext'
 import Inicio from './pages/Inicio'
 import Cadastro from './pages/Cadastro'
 import Listagem from './pages/Listagem'
+import Editar from './pages/Editar'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/" element={<Inicio />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/listagem" element={<Listagem />} />
+          <Route path="/editar/:id" element={<Editar />} />
         </Routes>
 
         <footer>

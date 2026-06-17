@@ -1,18 +1,31 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useFilmes } from '../context/FilmesContext'
 
 const GENEROS = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Animação', 'Documentário', 'Outro']
 
-export default function Cadastro() {
-  const { adicionarFilme } = useFilmes()
+export default function Editar() {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const { filmes, atualizarFilme } = useFilmes()
+
+  const filme = filmes.find(f => f.id === Number(id))
 
   const [titulo, setTitulo] = useState('')
   const [genero, setGenero] = useState('')
   const [nota, setNota] = useState('')
   const [descricao, setDescricao] = useState('')
   const [erros, setErros] = useState({})
-  const [sucesso, setSucesso] = useState(false)
   const [erroApi, setErroApi] = useState('')
+
+  useEffect(() => {
+    if (filme) {
+      setTitulo(filme.titulo)
+      setGenero(filme.genero)
+      setNota(String(filme.nota))
+      setDescricao(filme.descricao || '')
+    }
+  }, [filme])
 
   function validar() {
     const novosErros = {}
@@ -30,24 +43,27 @@ export default function Cadastro() {
       return
     }
     try {
-      await adicionarFilme({ titulo, genero, nota: Number(nota), descricao })
-      setTitulo('')
-      setGenero('')
-      setNota('')
-      setDescricao('')
-      setErros({})
-      setErroApi('')
-      setSucesso(true)
-      setTimeout(() => setSucesso(false), 3000)
+      await atualizarFilme(Number(id), { titulo, genero, nota: Number(nota), descricao })
+      navigate('/listagem')
     } catch {
-      setErroApi('Erro ao cadastrar o filme. Verifique se o servidor está rodando.')
+      setErroApi('Erro ao atualizar o filme. Verifique se o servidor está rodando.')
     }
+  }
+
+  if (!filme) {
+    return (
+      <main>
+        <section>
+          <p style={{ color: '#999' }}>Filme não encontrado.</p>
+        </section>
+      </main>
+    )
   }
 
   return (
     <main>
       <section>
-        <h2>Cadastrar Filme</h2>
+        <h2>Editar Filme</h2>
         <form onSubmit={handleSubmit} noValidate>
           <fieldset>
             <legend>Dados do filme</legend>
@@ -95,8 +111,12 @@ export default function Cadastro() {
             />
           </fieldset>
 
-          <button type="submit">Cadastrar</button>
-          {sucesso && <p className="sucesso">Filme cadastrado com sucesso!</p>}
+          <div className="acoes-editar">
+            <button type="button" className="btn-cancelar" onClick={() => navigate('/listagem')}>
+              Cancelar
+            </button>
+            <button type="submit">Salvar alterações</button>
+          </div>
           {erroApi && <p className="erro">{erroApi}</p>}
         </form>
       </section>
