@@ -174,6 +174,7 @@ textarea:focus {
 
 textarea {
   resize: vertical;
+  max-height: 120px;
 }
 
 .erro {
@@ -183,7 +184,11 @@ textarea {
 }
 
 .sucesso {
-  color: #4caf50;
+  color: #1e4d22;
+  background-color: #d4edda;
+  border: 1px solid #a3d9a5;
+  border-radius: var(--raio);
+  padding: 0.75rem 1rem;
   font-size: 0.95rem;
   margin-top: 1rem;
 }
@@ -213,26 +218,6 @@ footer {
   padding: 1rem;
   font-size: 0.85rem;
   color: var(--cor-texto-suave);
-}
-
-/* ===========================
-   Filtro
-=========================== */
-.form-filtro {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.form-filtro label {
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.form-filtro select {
-  width: auto;
 }
 
 /* ===========================
@@ -300,6 +285,7 @@ footer {
   text-align: right;
 }
 
+.btn-editar,
 .btn-remover {
   background: none;
   border: 1px solid var(--cor-borda);
@@ -311,9 +297,36 @@ footer {
   transition: border-color 0.2s, color 0.2s;
 }
 
+.btn-editar:hover {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
 .btn-remover:hover {
   border-color: var(--cor-destaque);
   color: var(--cor-destaque);
+}
+
+.acoes-editar {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-cancelar {
+  background: none;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto-suave);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-cancelar:hover {
+  border-color: var(--cor-texto-suave);
+  color: var(--cor-texto);
 }
 
 .mensagem-vazia {

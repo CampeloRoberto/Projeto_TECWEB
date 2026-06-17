@@ -36,25 +36,46 @@
       "descricao": "Uma família pobre se infiltra na vida de uma família rica na Coreia do Sul."
     },
     {
-      "id": 6,
-      "titulo": "Coringa",
-      "genero": "Drama",
-      "nota": 8,
-      "descricao": "A origem do vilão mais icônico dos quadrinhos."
-    },
-    {
-      "id": 7,
-      "titulo": "Vingadores: Ultimato",
-      "genero": "Ação",
-      "nota": 8,
-      "descricao": "Os heróis restantes se unem para reverter as ações de Thanos."
-    },
-    {
       "titulo": "diario de um banana",
       "genero": "Comédia",
       "nota": 4,
       "descricao": "",
       "id": 8
+    },
+    {
+      "titulo": "O diabo veste prada",
+      "genero": "Drama",
+      "nota": 7,
+      "descricao": "",
+      "id": 9
+    },
+    {
+      "titulo": "Coringa",
+      "genero": "Drama",
+      "nota": 1,
+      "descricao": "",
+      "id": 10
+    },
+    {
+      "titulo": "todo mundo em pânico",
+      "genero": "Comédia",
+      "nota": 7,
+      "descricao": "",
+      "id": 11
+    },
+    {
+      "titulo": "todo mundo em pânico 6",
+      "genero": "Comédia",
+      "nota": 6,
+      "descricao": "",
+      "id": 12
+    },
+    {
+      "titulo": "todo mundo em pânico 7",
+      "genero": "Ação",
+      "nota": 7,
+      "descricao": "",
+      "id": 13
     }
   ]
 }
