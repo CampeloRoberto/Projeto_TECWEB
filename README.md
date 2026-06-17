@@ -1,6 +1,6 @@
 # CineList — Projeto TECWEB
 
-Aplicação web de filmes favoritos desenvolvida com HTML, CSS e JavaScript puro, sem frameworks. Os dados são persistidos no localStorage do navegador.
+Aplicação web de filmes favoritos desenvolvida com React, React Router e integração com API REST via json-server.
 
 ---
 
@@ -9,17 +9,24 @@ Aplicação web de filmes favoritos desenvolvida com HTML, CSS e JavaScript puro
 **Pré-requisito:** Node.js instalado.
 
 ```bash
-# 1. Acesse a pasta da aplicação
-cd tec_web_app
+# 1. Acesse a pasta do frontend
+cd tec_web_app/frontend
 
-# 2. Instale as dependências (apenas o Vite, usado como servidor local)
+# 2. Instale as dependências
 npm install
 
-# 3. Inicie o servidor de desenvolvimento
+# 3. Inicie o frontend e a API juntos
 npm run dev
 ```
 
-Acesse no navegador: `http://localhost:5173`
+O comando `npm run dev` sobe os dois serviços simultaneamente:
+
+| Serviço | URL |
+|---|---|
+| App React (Vite) | `http://localhost:5173` |
+| API REST (json-server) | `http://localhost:3001` |
+
+> Para rodar apenas a API: `npm run api`
 
 ---
 
@@ -27,9 +34,9 @@ Acesse no navegador: `http://localhost:5173`
 
 | Rota | Descrição |
 |---|---|
-| `/` ou `/index.html` | Página inicial com chamada para ação |
-| `/cadastro.html` | Formulário para cadastrar um filme |
-| `/listagem.html` | Listagem de filmes salvos com filtro e remoção |
+| `/` | Página inicial com chamada para ação |
+| `/cadastro` | Formulário para cadastrar um novo filme |
+| `/listagem` | Listagem dos filmes cadastrados |
 
 ---
 
@@ -37,55 +44,62 @@ Acesse no navegador: `http://localhost:5173`
 
 ```
 tec_web_app/
-├── index.html          # Página Início
-├── cadastro.html       # Página Cadastro
-├── listagem.html       # Página Listagem
-├── css/
-│   └── style.css       # Estilização global e responsiva
-└── js/
-    ├── cadastro.js     # Lógica do formulário e validação
-    └── listagem.js     # Renderização, filtro e remoção de filmes
+├── backend/
+│   └── db.json             # Banco de dados da API (json-server)
+│
+└── frontend/
+    ├── vite.config.js      # Proxy /api → http://localhost:3001
+    ├── package.json
+    └── src/
+        ├── App.jsx         # Roteamento principal e layout
+        ├── main.jsx        # Entry point React
+        ├── css/
+        │   └── style.css   # Estilização global e responsiva
+        ├── context/
+        │   └── FilmesContext.jsx  # Estado global + chamadas à API
+        ├── pages/
+        │   ├── Inicio.jsx
+        │   ├── Cadastro.jsx
+        │   └── Listagem.jsx
+        └── components/
+            └── FilmeCard.jsx
 ```
 
-Não há backend. Todo o estado da aplicação vive no **localStorage** do navegador sob a chave `filmes`, como um array de objetos JSON:
+---
+
+## API REST
+
+Os dados são persistidos no arquivo `backend/db.json` via json-server. O Vite faz proxy das chamadas `/api/*` para `http://localhost:3001`.
+
+| Método | Endpoint | Descrição |
+|---|---|---|
+| `GET` | `/api/filmes` | Lista todos os filmes |
+| `POST` | `/api/filmes` | Cadastra um novo filme |
+| `DELETE` | `/api/filmes/:id` | Remove um filme |
+
+Estrutura de um filme:
 
 ```json
-[
-  {
-    "id": 1712345678900,
-    "titulo": "Interestelar",
-    "genero": "Ficção Científica",
-    "nota": 10,
-    "descricao": "Uma jornada pelo espaço e pelo tempo."
-  }
-]
+{
+  "id": 1,
+  "titulo": "Matrix",
+  "genero": "Ficção Científica",
+  "nota": 9,
+  "descricao": "Um programador descobre que a realidade é uma simulação."
+}
 ```
 
 ---
 
 ## Funcionalidades
 
-- Navegação entre três páginas via menu fixo no topo
-- Formulário com validação de campos obrigatórios (título, gênero e nota)
+- Navegação entre três páginas com React Router e menu ativo
+- Formulário controlado com validação de campos obrigatórios (título, gênero e nota)
 - Mensagens de erro por campo e feedback de sucesso ao cadastrar
 - Listagem dinâmica em grid responsivo
-- Filtro de filmes por gênero
 - Remoção individual de filmes
-- Dados persistidos no navegador — sobrevivem a refresh e fechamento de aba
-
----
-
-## Inspecionar os dados pelo console
-
-Abra o DevTools (`F12`) e no console do navegador:
-
-```js
-// Ver todos os filmes salvos
-JSON.parse(localStorage.getItem('filmes'))
-
-// Limpar todos os filmes
-localStorage.removeItem('filmes')
-```
+- Estado compartilhado entre páginas via Context API
+- Dados persistidos na API — sobrevivem a refresh e fechamento de aba
 
 ---
 
@@ -93,16 +107,24 @@ localStorage.removeItem('filmes')
 
 | Pessoa | Responsabilidade |
 |---|---|
-| P1 | Estrutura HTML das 3 páginas, menu de navegação e CSS global |
-| P2 | Formulário de cadastro, validação e persistência no localStorage |
-| P3 | Listagem dinâmica, filtro por gênero e remoção de filmes |
+| P1 | Estrutura do projeto React, App.jsx, roteamento e CSS global |
+| P2 | Formulário de cadastro (Cadastro.jsx), validação e FilmeCard |
+| P3 | Listagem dinâmica (Listagem.jsx), Context API e integração com a API REST |
 
 ---
 
 ## Tecnologias
 
-- HTML5 semântico (sem uso de `<div>`)
-- CSS3 com custom properties e Grid/Flexbox
-- JavaScript ES6+ vanilla
-- localStorage para persistência de dados
-- Vite como servidor de desenvolvimento
+- React 18 com hooks (useState, useEffect, useContext)
+- React Router v6 (BrowserRouter, NavLink, Routes)
+- Context API para gerenciamento de estado global
+- json-server para API REST local
+- Vite como bundler e servidor de desenvolvimento
+- CSS3 com custom properties, Grid e Flexbox
+
+
+## Integrantes
+
+- Diego Furtado Amorim
+- Isadora Batista Alves
+- Roberto Campelo Uchôa
