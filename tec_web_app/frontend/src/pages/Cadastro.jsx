@@ -3,8 +3,16 @@ import { useFilmes } from '../context/FilmesContext'
 
 const GENEROS = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Animação', 'Documentário', 'Outro']
 
+const normalizar = str =>
+  str.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+const titularizar = str =>
+  str.trim().split(' ')
+    .filter(p => p.length > 0)
+    .map(p => p[0].toUpperCase() + p.slice(1).toLowerCase())
+    .join(' ')
+
 export default function Cadastro() {
-  const { adicionarFilme } = useFilmes()
+  const { adicionarFilme, filmes } = useFilmes()
 
   const [titulo, setTitulo] = useState('')
   const [genero, setGenero] = useState('')
@@ -17,6 +25,8 @@ export default function Cadastro() {
   function validar() {
     const novosErros = {}
     if (!titulo.trim()) novosErros.titulo = 'O título é obrigatório.'
+    else if (filmes.some(f => normalizar(f.titulo) === normalizar(titulo)))
+      novosErros.titulo = 'Já existe um filme com esse título.'
     if (!genero) novosErros.genero = 'Selecione um gênero.'
     if (!nota || nota < 1 || nota > 10) novosErros.nota = 'A nota deve ser entre 1 e 10.'
     return novosErros
@@ -30,7 +40,7 @@ export default function Cadastro() {
       return
     }
     try {
-      await adicionarFilme({ titulo, genero, nota: Number(nota), descricao })
+      await adicionarFilme({ titulo: titularizar(titulo), genero, nota: Number(nota), descricao })
       setTitulo('')
       setGenero('')
       setNota('')

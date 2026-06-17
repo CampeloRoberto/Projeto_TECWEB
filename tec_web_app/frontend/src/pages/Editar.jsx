@@ -4,6 +4,14 @@ import { useFilmes } from '../context/FilmesContext'
 
 const GENEROS = ['Ação', 'Comédia', 'Drama', 'Ficção Científica', 'Terror', 'Animação', 'Documentário', 'Outro']
 
+const normalizar = str =>
+  str.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+const titularizar = str =>
+  str.trim().split(' ')
+    .filter(p => p.length > 0)
+    .map(p => p[0].toUpperCase() + p.slice(1).toLowerCase())
+    .join(' ')
+
 export default function Editar() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -30,6 +38,8 @@ export default function Editar() {
   function validar() {
     const novosErros = {}
     if (!titulo.trim()) novosErros.titulo = 'O título é obrigatório.'
+    else if (filmes.some(f => f.id !== Number(id) && normalizar(f.titulo) === normalizar(titulo)))
+      novosErros.titulo = 'Já existe um filme com esse título.'
     if (!genero) novosErros.genero = 'Selecione um gênero.'
     if (!nota || nota < 1 || nota > 10) novosErros.nota = 'A nota deve ser entre 1 e 10.'
     return novosErros
@@ -43,7 +53,7 @@ export default function Editar() {
       return
     }
     try {
-      await atualizarFilme(Number(id), { titulo, genero, nota: Number(nota), descricao })
+      await atualizarFilme(Number(id), { titulo: titularizar(titulo), genero, nota: Number(nota), descricao })
       navigate('/listagem')
     } catch {
       setErroApi('Erro ao atualizar o filme. Verifique se o servidor está rodando.')
