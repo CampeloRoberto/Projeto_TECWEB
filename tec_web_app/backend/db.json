@@ -1,0 +1,60 @@
+{
+  "filmes": [
+    {
+      "id": 1,
+      "titulo": "Matrix",
+      "genero": "Ficção Científica",
+      "nota": 9,
+      "descricao": "Um programador descobre que a realidade é uma simulação."
+    },
+    {
+      "id": 2,
+      "titulo": "Pulp Fiction",
+      "genero": "Drama",
+      "nota": 10,
+      "descricao": "Histórias entrelaçadas no submundo de Los Angeles."
+    },
+    {
+      "id": 3,
+      "titulo": "O Poderoso Chefão",
+      "genero": "Drama",
+      "nota": 10,
+      "descricao": "A saga de uma família da máfia italiana nos EUA."
+    },
+    {
+      "id": 4,
+      "titulo": "Interestelar",
+      "genero": "Ficção Científica",
+      "nota": 9,
+      "descricao": "Astronautas viajam pelo espaço em busca de um novo lar para a humanidade."
+    },
+    {
+      "id": 5,
+      "titulo": "Parasita",
+      "genero": "Drama",
+      "nota": 9,
+      "descricao": "Uma família pobre se infiltra na vida de uma família rica na Coreia do Sul."
+    },
+    {
+      "id": 6,
+      "titulo": "Coringa",
+      "genero": "Drama",
+      "nota": 8,
+      "descricao": "A origem do vilão mais icônico dos quadrinhos."
+    },
+    {
+      "id": 7,
+      "titulo": "Vingadores: Ultimato",
+      "genero": "Ação",
+      "nota": 8,
+      "descricao": "Os heróis restantes se unem para reverter as ações de Thanos."
+    },
+    {
+      "titulo": "diario de um banana",
+      "genero": "Comédia",
+      "nota": 4,
+      "descricao": "",
+      "id": 8
+    }
+  ]
+}

@@ -4,9 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"json-server --watch ../backend/db.json --port 3001\"",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "api": "json-server --watch ../backend/db.json --port 3001"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -15,6 +16,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^9.1.2",
+    "json-server": "^0.17.4",
     "vite": "^8.0.4"
   }
 }
