@@ -12,6 +12,7 @@ export default function Cadastro() {
   const [descricao, setDescricao] = useState('')
   const [erros, setErros] = useState({})
   const [sucesso, setSucesso] = useState(false)
+  const [erroApi, setErroApi] = useState('')
 
   function validar() {
     const novosErros = {}
@@ -21,21 +22,26 @@ export default function Cadastro() {
     return novosErros
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const novosErros = validar()
     if (Object.keys(novosErros).length > 0) {
       setErros(novosErros)
       return
     }
-    adicionarFilme({ titulo, genero, nota: Number(nota), descricao })
-    setTitulo('')
-    setGenero('')
-    setNota('')
-    setDescricao('')
-    setErros({})
-    setSucesso(true)
-    setTimeout(() => setSucesso(false), 3000)
+    try {
+      await adicionarFilme({ titulo, genero, nota: Number(nota), descricao })
+      setTitulo('')
+      setGenero('')
+      setNota('')
+      setDescricao('')
+      setErros({})
+      setErroApi('')
+      setSucesso(true)
+      setTimeout(() => setSucesso(false), 3000)
+    } catch {
+      setErroApi('Erro ao cadastrar o filme. Verifique se o servidor está rodando.')
+    }
   }
 
   return (
@@ -91,6 +97,7 @@ export default function Cadastro() {
 
           <button type="submit">Cadastrar</button>
           {sucesso && <p className="sucesso">Filme cadastrado com sucesso!</p>}
+          {erroApi && <p className="erro">{erroApi}</p>}
         </form>
       </section>
     </main>

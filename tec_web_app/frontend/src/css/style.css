@@ -216,26 +216,6 @@ footer {
 }
 
 /* ===========================
-   Filtro
-=========================== */
-.form-filtro {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.form-filtro label {
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.form-filtro select {
-  width: auto;
-}
-
-/* ===========================
    Lista de filmes
 =========================== */
 .lista-filmes {
